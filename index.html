@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AJAX</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-    <button id="obtener_datos">Obtener datos</button>
+    <div class="container">
+        <div class="cabecera">
+            <h2>Uso basico de AJAX...</h2>
+        </div>
+        <div class="content-body">
+            <div class="header-body">
+                <button class="btn" id="obtener_datos">Obtener datos</button>
+                <div id="info" class="defaul-info">
+                    <p>Aun no haz hecho clic en el botón para obtener los datos!</p>
+                </div>
+            </div>
+
+            <div id="data-result" class="data"></div>
+        </div>
+    </div>
 
     <script src="js/MyScripts.js"></script>
 </body>
