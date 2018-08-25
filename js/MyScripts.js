@@ -1,16 +1,15 @@
-/* Capturo el elemto del DOM a traves de su Id */
+/* Capturo el elemeto del DOM a traves de su Id */
 const obtener_datos = document.getElementById('obtener_datos');
 
 const data_result = document.getElementById('data-result');
-const info = document.getElementById('info');
+const info = document.getElementById('message-info');
 
-const MESSAGEHTML = "<p>Solitud Realizada y Procesada</p>";
+const MESSAGE = "Solitud Realizada y Procesada";
 
 obtener_datos.addEventListener('click', function(event){
     /* Llamando a la funcion que realiza mi solicitud AJAX */
     AJAX();
 })
-
 
 function AJAX(){
     /* Instancia de objeto */
@@ -21,42 +20,48 @@ function AJAX(){
     
     // URI a la cual se le hara la solicitud
     const URI = 'https://jsonplaceholder.typicode.com/users';
+    
+    //Metodo que recibe la configuracion de la solicitud.
+    xhttp.open(METHOD, URI, true);
+
+    //Enviar la solicitud.
+    xhttp.send();
 
     // Metodo que esta pendiente al cambio de estado
     xhttp.onreadystatechange = function(){
-        // Respuesta del servidor.
+        
+        //Verifico si esta en estado de aceptacion y si la solicitud esta lista sin problemas.
         if(this.readyState == 4 && this.status == 200 ){
             const result = JSON.parse(this.response);
             const view = ResultInView(result);
-            data_result.style.transition = "1s all"
+            info.style.borderLeftColor = "#44bd32"
+            info.innerHTML = MESSAGE;
+            obtener_datos.remove(this);
             data_result.innerHTML = view;
-            info.style.transition = "1s all"
-            info.style.backgroundColor = "#44bd32"
-            info.innerHTML = MESSAGEHTML;
         }
-    
     }
-
-    //Metodo que recibe la configuracion de la solicitud.
-    xhttp.open(METHOD, URI, true)
-
-    //Enviar la solicitud.
-    xhttp.send()
 
 }
 
+/* Retorna todo el html construido con toda la informacion de los usuarios para ser mostrada */
 function ResultInView(array){
     var html = '';
     array.map((data)=>{
-        html += `
-            <div class="user-info">
-                <p><strong>Nombre: </strong>             ${data.name}        </p>
-                <p><strong>Nombre de usuario: </strong>  ${data.username}    </p>
-                <p><strong>E-mail:</strong>              ${data.email}        </p>
-            </div>
-        `;
+        html += CardUserInfo(data);
     });
     return html;
 }
 
-
+/* Funcion encarda de construir el html de como se muestra la informacion del usuario */
+/* Recive como parametro los datos de un usuario */
+function CardUserInfo(user){
+    return `<div class="col s4">
+                <div class="card deep-orange darken-4">
+                    <div class="card-content white-text">
+                        <p>${user.name}</p>
+                        <p>${user.username}</p>
+                        <p>${user.email}</p>
+                    </div>
+                </div>
+            </div>`;
+}
