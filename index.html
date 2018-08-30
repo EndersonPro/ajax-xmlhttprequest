@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,9 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -41,34 +44,57 @@
         </div>
 
         <div class="row">
-            <div class="col">
-                <blockquote id="message-info">Aun no haz hecho clic en el botón para obtener los datos!</blockquote>
+            <div class="col s4">
+                <div class="row">
+                    <div class="col">
+                        <blockquote>Pequeño ejemplo realizado para revisar las funcionalidades de los metodos GET, POST, DELETE usando Ajax con VanillaJS</blockquote>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn deep-orange lighten-1" id="obtener_datos">Obtener datos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col s8">
+                <form method="POST" class="row">
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input min=4 value="Pedro" autocomplete="off" placeholder="Tu nombre" id="name" type="text" class="validate" required/>
+                                <label for="name">Nombres</label>
+                                <span class="helper-text" data-error="Ingrese un nombre valido" data-success="Nombre valido"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input value="pedroj_" autocomplete="off" placeholder="Nombre de usuario" id="username" type="text" class="validate" />
+                                <label for="username">Nombre de usuario</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input value="pedro@gmail.com" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                                    autocomplete="off" id="email" type="email" class="validate" required/>
+                                <label for="email">Email</label>
+                                <span class="helper-text" data-error="Ingrese un correo valido" data-success="Correo valido"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn btn-large waves-effect waves-light" type="submit" id="save">Guardar
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col s5">
-                <button class="btn deep-orange lighten-1" id="obtener_datos">Obtener datos</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1">Test 1</a></li>
-                    <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-                    <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-                    <li class="tab col s3"><a href="#test4">Test 4</a></li>
-                </ul>
-            </div>
-            <div id="test1" class="col s12">Test 1</div>
-            <div id="test2" class="col s12">Test 2</div>
-            <div id="test3" class="col s12">Test 3</div>
-            <div id="test4" class="col s12">Test 4</div>
-        </div>
-        
-        <div id="data-result" class="row">
-
-        </div>
+        <div id="data-result" class="row"></div>
     </div>
 
     <script src="js/MyScripts.js"></script>
